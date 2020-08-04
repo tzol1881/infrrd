@@ -1,0 +1,74 @@
+
+<form [formGroup]='addRideForm' (ngSubmit)='onSubmit()' class='add-ride'>
+    <div class='row error' *ngIf="rideScheduled">
+        <div class='col span-3-of-3 error error-header'>Adding of ride will be override your today's scheduled ride</div>
+    </div>
+    <div class='row'>
+        <div class='col span-1-of-3 label'><label for='empId'>Employee ID *</label></div>
+        <div class='col span-2-of-3'>
+            <input type='text' formControlName='empId' id='empId'>
+            <div class='row error' *ngIf="addRideForm.controls.empId.invalid && addRideForm.controls.empId.errors.invalidUser">
+                Please enter your Employee ID.
+            </div>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col span-1-of-3 label'><label for='vehicleType'>Vehicle type *</label></div>
+        <div class='col span-2-of-3'> 
+            <select formControlName='vehicleType' id='vehicleType'>
+                <option value='bike'>Bike</option>
+                <option value='car'>Car</option>
+            </select>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col span-1-of-3 label'><label for='vehicleNo'>Vehicle no *</label></div>
+        <div class='col span-2-of-3'> 
+            <input type='text' formControlName='vehicleNo' id='vehicleNo'>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col span-1-of-3 label'><label for='vacantSeats'>Vacant seats *</label></div>
+        <div class='col span-2-of-3'> 
+            <input type='text' formControlName='vacantSeats' id='vacantSeats'>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col span-1-of-3 label'><label for='time'>Time *</label></div>
+        <div class='col span-2-of-3'> 
+            <input type='time' formControlName='time' id='time'>
+        </div>
+    </div>
+
+    <div class='row' *ngIf="addRideForm.controls.time.touched && addRideForm.controls.time.invalid && addRideForm.controls.time.errors.invalidTime">
+        <div class='col span-1-of-3 label'>&nbsp;</div>
+        <div class='col span-2-of-3 error'> 
+            Time should be greater than current time.
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col span-1-of-3 label'><label for='pickupPoint'>Pick-up point *</label></div>
+        <div class='col span-2-of-3'> 
+            <input type='text' formControlName='pickupPoint' id='pickupPoint'>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col span-1-of-3 label'><label for='destination'>Destination *</label></div>
+        <div class='col span-2-of-3'> 
+            <input type='text' formControlName='destination' id='destination'>
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col span-1-of-3 label'>&nbsp;</div>
+        <div class='col span-2-of-3'> 
+            <button type='submit' [disabled]='!addRideForm.valid'>Add</button>
+        </div>
+    </div>
+</form>

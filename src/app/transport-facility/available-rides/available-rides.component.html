@@ -1,0 +1,49 @@
+<header>
+    <nav>
+        <app-navbar (showAddRide)='showAddRide=$event'></app-navbar>
+    </nav>
+</header>
+<section>
+    <div class='row'>
+        <div class="search-input"> Search <input type='text' [(ngModel)]='rideType'></div>
+    </div>
+    <div class='row'>
+        <table>
+            <tr>
+                <th>Emp ID</th>
+                <th>Vehicle Type</th>
+                <th>Vehicle No.</th>
+                <th>Vacant Seats</th>
+                <th>Time</th>
+                <th>Pick-up Point</th>
+                <th>Destination</th>
+                <th>Action</th>
+            </tr>
+            <tr *ngFor="let ride of availableRides | async | rideFilter:rideType:'vehicleType'">
+                <td>{{ ride.empId }}</td>
+                <td>{{ ride.vehicleType }}</td>
+                <td>{{ ride.vehicleNo }}</td>
+                <td>{{ ride.vacantSeats }}</td>
+                <td>{{ ride.time }}</td>
+                <td>{{ ride.pickupPoint }}</td>
+                <td>{{ ride.destination }}</td>
+                <td>
+                    <button (click)="bookRide(ride.empId,'book')" [disabled] = 'isAllowedToBook(ride)'>Book</button>&nbsp;
+                    <button (click)="bookRide(ride.empId,'cancel')" [disabled] = 'isAllowedToCancel(ride)'>Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class='row'>
+        <div class='addRide' *ngIf='showAddRide'>
+            <div class='add-ride-header'>
+                <div class='header-title'>Add Ride</div>
+                <div class='close-button' (click)="showAddRide=false"><i class="fa fa-times"></i></div>
+            </div>
+            <app-add-ride (hideRideDialog)='showAddRide=$event'></app-add-ride>
+        </div>
+    </div>
+</section>
+<footer>
+    © Copyright 2020 Infrrd Inc. All Rights Reserved.
+</footer>

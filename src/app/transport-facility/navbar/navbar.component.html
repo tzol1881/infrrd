@@ -1,0 +1,21 @@
+<div class="row">
+    <img  class="nav-logo" src='https://www.infrrd.ai/hs-fs/hubfs/infrrd_logo.png?width=200&name=infrrd_logo.png' alt='logo'>
+    <ul class="main-nav">
+        <li>Available Rides</li>
+        <li (click)="showAddRide.emit(true)">Add Ride</li>
+        <li (click)="logout()">Logout</li>
+    </ul>
+
+    <ul class="main-nav-mobile" *ngIf="!mobileMenu">
+        <li>Available Rides</li>
+        <li (click)="showAddRide.emit(true)">Add Ride</li>
+        <li (click)="logout()">Logout</li>
+    </ul>
+    <div class="mobile-menu icon" *ngIf="mobileMenu" (click)="mobileMenu=false">
+        <i class="fa fa-bars"></i>
+      </div>
+      
+      <div class="mobile-menu icon" *ngIf="!mobileMenu" (click)="mobileMenu=true">
+        <i class="fa fa-times"></i>
+      </div>
+</div>
